@@ -1,0 +1,2 @@
+# TODO: sustituir por el fichero generado desde tu entorno aislado
+# (debe incluir numpy, pandas, scikit-learn, matplotlib, joblib)
