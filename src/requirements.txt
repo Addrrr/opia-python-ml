@@ -1,7 +1,7 @@
-pandas
+﻿pandas
 scikit-learn
 joblib
 matplotlib
 requests
-uvicorn
+uvicorn[standard]
 fastapi
