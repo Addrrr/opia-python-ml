@@ -28,3 +28,4 @@ scikit-learn
 joblib
 matplotlib
 requests
+uvicorn
