@@ -45,8 +45,7 @@ def download_model(url: str = MODEL_URL, path: str = MODEL_PATH):
 
     Pistas: usa requests.get(url, timeout=DOWNLOAD_TIMEOUT), comprueba el
     resultado con response.raise_for_status() y escribe response.content en
-    el fichero abriéndolo en modo binario ("wb").
-    """
+    el fichero abriéndolo en modo binario ("wb")."""
     """Realiza una petición HTTP para descargar el contenido de una URL.
     url es la dirección desde la que se descarga el modelo.
     timeout=DOWNLOAD_TIMEOUT establece un límite de 30 segundos para la espera de la respuesta.
