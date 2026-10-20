@@ -16,26 +16,48 @@ RANDOM_STATE = 42
 TEST_SIZE = 0.2
 MAX_DEPTH = 3
 MODEL_PATH = "modelo_california.pkl"
+TREE_IMAGE_PATH = "arbol_decision.png"
 
 
 def check_nulls(df: pd.DataFrame):
-    """TODO: muestra por pantalla el número de valores nulos por columna."""
-    raise NotImplementedError
+    """Muestra por pantalla el número de valores nulos por columna."""
+    print("Número de valores nulos por columna:")
+    print(df.isnull().sum())
 
 
 def handle_nulls(df: pd.DataFrame) -> pd.DataFrame:
-    """TODO: trata los valores nulos del DataFrame (descártalos con
+    """Trata los valores nulos del DataFrame (descártalos con
     dropna() o rellénalos con fillna(), según lo que decidas) y
     devuelve el DataFrame resultante."""
-    raise NotImplementedError
+    df = df.dropna()
+    print(f"Filas restantes después de eliminar nulos: {len(df)}")
+    return df
 
 
 def plot_decision_tree(model):
-    """TODO: dibuja el árbol del `model` ya entrenado con plot_tree()
-    y guarda la imagen en un .png."""
+    """Dibuja el árbol entrenado y guarda la imagen en un PNG."""
     plt.figure(figsize=(16, 8))
-    plot_tree(model, filled=True, rounded=True, fontsize=8)
-    plt.show()
+    plot_tree(
+        model,
+        filled=True,
+        rounded=True,
+        fontsize=8,
+        feature_names=[
+            "MedInc",
+            "HouseAge",
+            "AveRooms",
+            "AveBedrms",
+            "Population",
+            "AveOccup",
+            "Latitude",
+            "Longitude",
+        ],
+        class_names=None,
+    )
+    plt.title("Árbol de decisión: precio de viviendas en California")
+    plt.savefig(TREE_IMAGE_PATH, bbox_inches="tight", dpi=150)
+    plt.close()
+    print(f"Árbol de decisión guardado en: {TREE_IMAGE_PATH}")
 
 
 def compute_errors(y_true, y_pred, print_errors: bool = True) -> tuple[float, float]:
@@ -52,8 +74,9 @@ def compute_errors(y_true, y_pred, print_errors: bool = True) -> tuple[float, fl
 
 
 def save_model(model, path: str = MODEL_PATH):
-    """TODO: guarda el modelo entrenado en `path` usando joblib.dump()."""
-    raise NotImplementedError
+    """Guarda el modelo entrenado utilizando joblib."""
+    joblib.dump(model, path)
+    print(f"Modelo guardado en: {path}")
 
 
 def validate_data():
@@ -62,10 +85,16 @@ def validate_data():
     check_nulls(df)
     df = handle_nulls(df)
 
+    print(f"Dimensiones del conjunto de datos: {df.shape}")
+    return df
+
 
 def build_model():
     """Carga los datos, entrena el modelo, muestra sus errores y lo devuelve."""
     df = fetch_california_housing(as_frame=True).frame
+
+    check_nulls(df)
+    df = handle_nulls(df)
 
     X = df.drop(columns=[TARGET])
     y = df[TARGET]
@@ -89,11 +118,12 @@ def plot_data():
 
 
 def main():
+    """Entrena y guarda el modelo entrenado."""
     model = build_model()
-    # save_model(model)  # TODO: descomenta cuando hayas completado el stub
+    save_model(model)
 
 
 if __name__ == "__main__":
-    # validate_data()  # TODO: descomenta cuando hayas completado los stubs
-    plot_data()  # TODO: descomenta cuando hayas completado plot_decision_tree
+    validate_data()
+    plot_data()
     main()
