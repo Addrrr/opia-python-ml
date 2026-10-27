@@ -21,7 +21,8 @@ from pydantic import BaseModel
 
 MODEL_PATH = "modelo_prueba.pkl"
 # https://raw.githubusercontent.com/<usuario>/<repositorio>/main/modelo_california.pkl
-MODEL_URL = "https://raw.githubusercontent.com/Addrrr/opia-python-ml/main/modelo_california.pkl"
+MODEL_URL = "https://raw.githubusercontent.com/Addrrr/opia-python-ml/main/src/modelo_california.pkl"
+
 DOWNLOAD_TIMEOUT = 30  # segundos
 
 # El modelo se carga al arrancar y se guarda aquí.
