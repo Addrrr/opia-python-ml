@@ -19,7 +19,7 @@ import requests
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 
-MODEL_PATH = "modelo_california.pkl"
+MODEL_PATH = "modelo_prueba.pkl"
 # https://raw.githubusercontent.com/<usuario>/<repositorio>/main/modelo_california.pkl
 MODEL_URL = "https://raw.githubusercontent.com/Addrrr/opia-python-ml/main/modelo_california.pkl"
 DOWNLOAD_TIMEOUT = 30  # segundos
