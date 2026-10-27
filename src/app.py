@@ -74,9 +74,7 @@ async def lifespan(app: FastAPI):
     state["model"] = load_model()
     yield
 
-
 app = FastAPI(title="Precio de casas en California", lifespan=lifespan)
-
 
 @app.get("/")
 def health():
