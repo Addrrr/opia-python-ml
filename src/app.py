@@ -19,7 +19,7 @@ import requests
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 
-MODEL_PATH = "modelo_prueba.pkl"
+MODEL_PATH = "modelo_california.pkl"
 # https://raw.githubusercontent.com/<usuario>/<repositorio>/main/modelo_california.pkl
 MODEL_URL = "https://raw.githubusercontent.com/Addrrr/opia-python-ml/main/src/modelo_california.pkl"
 
