@@ -5,3 +5,4 @@ matplotlib
 requests
 uvicorn[standard]
 fastapi
+streamlit
