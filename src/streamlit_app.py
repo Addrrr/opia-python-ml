@@ -186,7 +186,9 @@ if st.button("Estimar precio"):
             med_house_val = response.json()["MedHouseVal"]
             # Valor SIN formatear (cientos de miles de $), para poder probar la
             # app antes de hacer el apartado c.
-            st.metric("Valor devuelto por la API (sin formatear)", med_house_val)
+            med_house_val = response.json()["MedHouseVal"]
+            st.metric("Precio estimado", format_price(med_house_val))
+            st.caption(f"Valor crudo devuelto por la API: {med_house_val} (cientos de miles de $)")
             # TODO 4 (apartados c y d): muestra el precio ya formateado.
             # Pista: sustituye la línea st.metric de arriba por
             # st.metric("Precio estimado", format_price(med_house_val))
