@@ -58,7 +58,7 @@ logger = logging.getLogger("app")
 # Nombres que aparecerán en la interfaz (necesario para las capturas).
 AUTORES = "Mariano, Adrián"
 
-# TODO 0 (apartado a): URL pública de tu API en Render (sin barra final).
+#(apartado a): URL pública de tu API en Render (sin barra final).
 # Por defecto la app usa la API en local. Antes de desplegar en Render,
 # sustituye <tu-servicio-api> por el nombre de tu servicio, comenta la línea
 # de localhost y descomenta la de Render: es la que usará la app desplegada.
@@ -89,7 +89,7 @@ DEFAULTS = {
 def find_missing(payload: dict) -> list[str]:
     """Devuelve las variables de FEATURE_NAMES que faltan en `payload`.
 
-    TODO 2 (apartado b): una variable falta si su clave no está en el
+    (apartado b): una variable falta si su clave no está en el
     diccionario o si vale None.
     Pista: recorre FEATURE_NAMES y comprueba `payload.get(nombre) is None`.
     Ojo: no uses `if not valor`, porque 0.0 es un valor válido.
@@ -104,7 +104,7 @@ def find_missing(payload: dict) -> list[str]:
 def format_price(med_house_val: float) -> str:
     """Convierte la salida del modelo a un texto legible en dólares.
 
-    TODO 3 (apartado c): la variable objetivo está en cientos de miles de
+    (apartado c): la variable objetivo está en cientos de miles de
     dólares, así que 4.53 debe convertirse en "$453,000".
     Pistas: multiplica por 100_000; para el texto usa un f-string con el
     formato de miles de Python, f"${precio:,.0f}".
@@ -131,13 +131,13 @@ med_inc = st.number_input(
     "Ingreso medio de la zona (decenas de miles de $)",
     min_value=0.0, max_value=15.0, value=3.5, step=0.1,
 )
-# Hasta que completes el TODO 6, AveRooms usa un valor por defecto fijo
+# Hasta que completes el TO DO 6, AveRooms usa un valor por defecto fijo
 # (mediana aproximada del dataset), así la petición lleva las 8 variables.
 ave_rooms = st.number_input(
     "Número medio de habitaciones por vivienda",
     min_value=1.0, max_value=15.0, value=5.2, step=0.1
 )
-# TODO 6 (apartado d): sustituye el valor fijo de arriba por un campo de entrada
+# (apartado d): sustituye el valor fijo de arriba por un campo de entrada
 # para el número de habitaciones: asigna a `ave_rooms` un st.number_input,
 # copiando el de ingreso medio, con
 #   etiqueta "Número medio de habitaciones por vivienda",
@@ -171,7 +171,7 @@ if st.button("Estimar precio"):
     try:
         start = time.perf_counter()
         with st.spinner("Consultando la API (la primera vez puede tardar más de un minuto)..."):
-            # TODO 1 (apartado a): envía `payload` como JSON a la API con una
+            # (apartado a): envía `payload` como JSON a la API con una
             # petición POST al endpoint /predict y guarda la respuesta en
             # `response`. Pista: requests.post(api_url + "/predict",
             # json=payload, timeout=TIMEOUT). Borra la línea de abajo.
@@ -179,7 +179,7 @@ if st.button("Estimar precio"):
         elapsed_ms = (time.perf_counter() - start) * 1000
     except requests.RequestException as exc:
         logger.error("Fallo de comunicación con %s: %s", api_url, exc)
-        # TODO 5a (apartado e): sustituye el mensaje por uno claro para el
+        # (apartado e): sustituye el mensaje por uno claro para el
         # usuario (qué ha pasado y qué puede hacer). Este único except cubre
         # cualquier fallo de comunicación (sin conexión, timeout...).
         st.error(
@@ -196,13 +196,13 @@ if st.button("Estimar precio"):
             med_house_val = response.json()["MedHouseVal"]
             st.metric("Precio estimado", format_price(med_house_val))
             st.caption(f"Valor crudo devuelto por la API: {med_house_val} (cientos de miles de $)")
-            # TODO 4 (apartados c y d): muestra el precio ya formateado.
+            # (apartados c y d): muestra el precio ya formateado.
             # Pista: sustituye la línea st.metric de arriba por
             # st.metric("Precio estimado", format_price(med_house_val))
             # (o st.success). Opcional: deja un st.caption con el valor crudo
             # de la API (entregable del apartado c).
         else:
-            # TODO 5b (apartado e): muestra UN solo st.error claro para
+            # (apartado e): muestra UN solo st.error claro para
             # cualquier código distinto de 200 (422, 500...): indica el código
             # y el detalle con response.text (no llames a response.json():
             # en un 500 el cuerpo NO es JSON). Borra la línea de abajo.
