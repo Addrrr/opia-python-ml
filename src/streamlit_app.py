@@ -109,10 +109,11 @@ def format_price(med_house_val: float) -> str:
     Pistas: multiplica por 100_000; para el texto usa un f-string con el
     formato de miles de Python, f"${precio:,.0f}".
     """
-    raise NotImplementedError("Completa el TODO 3: format_price()")
+    precio = med_house_val * 100_000
+    return f"${precio:,.0f}"
 
 
-# ---------------------------------------------------------------- Interfaz --
+# --------------------Interfaz ---------------------------------------------
 st.set_page_config(page_title="Precio de casas en California")
 st.title("Precio de casas en California")
 st.caption(f"{AUTORES} - P3")
