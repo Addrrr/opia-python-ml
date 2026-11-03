@@ -179,7 +179,11 @@ if st.button("Estimar precio"):
         # TODO 5a (apartado e): sustituye el mensaje por uno claro para el
         # usuario (qué ha pasado y qué puede hacer). Este único except cubre
         # cualquier fallo de comunicación (sin conexión, timeout...).
-        st.error("TODO 5a: no se pudo contactar con la API.")
+        st.error(
+            "No se pudo contactar con la API. Comprueba tu conexión a internet y que la "
+            "URL de la API (barra lateral) es correcta. Si el servicio está en Render, "
+            "puede estar arrancando: espera un minuto e inténtalo de nuevo."
+        )
     else:
         logger.info("POST %s/predict -> HTTP %s en %.0f ms", api_url, response.status_code, elapsed_ms)
         if response.status_code == 200:
@@ -199,4 +203,7 @@ if st.button("Estimar precio"):
             # cualquier código distinto de 200 (422, 500...): indica el código
             # y el detalle con response.text (no llames a response.json():
             # en un 500 el cuerpo NO es JSON). Borra la línea de abajo.
-            raise NotImplementedError("Completa el TODO 5b: respuesta de error")
+            st.error(
+                f"La API devolvió un error (código {response.status_code}). "
+                f"Detalle: {response.text}"
+            )
