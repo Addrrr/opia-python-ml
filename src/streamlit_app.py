@@ -94,10 +94,11 @@ def find_missing(payload: dict) -> list[str]:
     Pista: recorre FEATURE_NAMES y comprueba `payload.get(nombre) is None`.
     Ojo: no uses `if not valor`, porque 0.0 es un valor válido.
     """
+    l = []
     for nombre in FEATURE_NAMES:
         if payload.get(nombre) is None:
-
-    raise NotImplementedError("Completa el TODO 2: find_missing()")
+            l.append(nombre)
+    return l
 
 
 def format_price(med_house_val: float) -> str:
