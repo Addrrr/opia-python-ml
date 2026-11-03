@@ -63,7 +63,7 @@ AUTORES = "Mariano, Adrián"
 # sustituye <tu-servicio-api> por el nombre de tu servicio, comenta la línea
 # de localhost y descomenta la de Render: es la que usará la app desplegada.
 # API_URL = "http://localhost:8000"
-API_URL = "https://opia-python-ml-1.onrender.com"
+API_URL = "https://opia-python-ml.onrender.com"
 # Segundos de espera. Con dos servicios dormidos en Render (la API y esta app),
 # el arranque en frío puede tardar más de un minuto.
 TIMEOUT = 90
