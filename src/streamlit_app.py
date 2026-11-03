@@ -171,7 +171,7 @@ if st.button("Estimar precio"):
             # petición POST al endpoint /predict y guarda la respuesta en
             # `response`. Pista: requests.post(api_url + "/predict",
             # json=payload, timeout=TIMEOUT). Borra la línea de abajo.
-            raise NotImplementedError("Completa el TODO 1: la petición POST")
+            response = requests.post(api_url + "/predict", json=payload, timeout=TIMEOUT)
         elapsed_ms = (time.perf_counter() - start) * 1000
     except requests.RequestException as exc:
         logger.error("Fallo de comunicación con %s: %s", api_url, exc)
